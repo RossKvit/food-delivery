@@ -61,12 +61,24 @@
         .m-b-md {
             margin-bottom: 30px;
         }
-        .home-page .content{
-            background: url( {{ asset('img/home_dg.jpeg') }} );
+
+        .home-page{
+            align-items: center;
+            display: flex;
+            justify-content: center;
             position: relative;
+            height: 100%;
+            flex-flow: column;
         }
 
-        .home-page .content:before{
+        .home-page__content{
+            background: url( {{ asset('img/home_dg.jpeg') }} );
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .home-page__content:before{
             content: '';
             background: #fff;
             opacity: 0.2;
@@ -81,10 +93,13 @@
         .home-page-description{
             color: #fff;
         }
+        .home-page__order-btn{
+            margin: 30px 0px 0 0;
+        }
     </style>
 </head>
 <body>
-<div class="home-page flex-center position-ref full-height">
+<div class="home-page">
     @if (Route::has('login'))
         <div class="top-right links">
             @auth
@@ -99,12 +114,12 @@
         </div>
     @endif
 
-    <div class="content">
+    <div class="home-page__content">
         <div class="title home-page-description m-b-md">
             {{ $description }}
         </div>
-
     </div>
+        <a href="/restaurants" class="home-page__order-btn">{{$order_title}}</a>
 </div>
 </body>
 </html>
