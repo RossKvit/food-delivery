@@ -16,3 +16,4 @@
 });*/
 
 Route::get('/', 'HomeController@show');
+Route::get('/restaurants', 'RestaurantsListController@show');
