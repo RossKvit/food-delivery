@@ -17,3 +17,4 @@
 
 Route::get('/', 'HomeController@show');
 Route::get('/restaurants', 'RestaurantsListController@show');
+Route::get('/restaurants/{slug}', 'DishesListController@show');
