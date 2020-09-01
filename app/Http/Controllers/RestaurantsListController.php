@@ -9,7 +9,11 @@ class RestaurantsListController extends Controller
 {
     public function getRestaurants():array
     {
-        return DB::table('restaurants')->distinct()->get()->toArray();
+        $restaurants = DB::table('restaurants')->distinct()->get()->toArray();
+        foreach ( $restaurants as $key => $item ){
+            $restaurants[$key]->url = '/restaurants/' . $item->slug;
+        }
+        return $restaurants;
     }
 
     public function show(){
