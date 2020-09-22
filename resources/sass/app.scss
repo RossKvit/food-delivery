@@ -11,6 +11,28 @@ html, body {
   margin: 0;
 }
 
+.header{
+  height: 40px;
+  border-bottom: 1px solid #e8e8e8;
+
+  &__logo{
+    height: 40px;
+    width: auto;
+  }
+  &__phone{
+    display: inline-block;
+    margin: -3px 0 0 0;
+  }
+}
+
+.container_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
 .full-height {
   height: 100vh;
 }
@@ -85,119 +107,32 @@ html, body {
   color: #fff;
 }
 .home-page__order-btn{
-  margin: 30px 0px 0 0;
+  margin: 30px 0 0 0;
+  color: #636b6f;
+  transition: text-decoration 0.3s;
 }
+.home-page__order-btn:hover {
+  text-decoration: none;
+}
+
 .container{
   width: $container+px;
   margin: 0 auto;
 }
 
-.dishes-page .container{
-  display: flex;
-}
+@import './dishes-page.scss';
+@import './restaurants-page.scss';
 
-.restaurant-info{
+%rate-star:before {
+  content: '';
+  width: 13px;
+  height: 13px;
+  margin: 0 3px 0 0;
   display: inline-block;
-  width: $restaurant-info;
-  background: #fff;
-  border-right: 1px solid #e8e8e8;
-  border-left: 1px solid #e8e8e8;
+  background-size: contain;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMXB0IiB2aWV3Qm94PSIwIC0xMCA1MTEuOTg2ODUgNTExIiB3aWR0aD0iNTExcHQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTUxMC42NTIzNDQgMTg1LjkwMjM0NGMtMy4zNTE1NjMtMTAuMzY3MTg4LTEyLjU0Njg3NS0xNy43MzA0NjktMjMuNDI1NzgyLTE4LjcxMDkzOGwtMTQ3Ljc3MzQzNy0xMy40MTc5NjgtNTguNDMzNTk0LTEzNi43Njk1MzJjLTQuMzA4NTkzLTEwLjAyMzQzNy0xNC4xMjEwOTMtMTYuNTExNzE4LTI1LjAyMzQzNy0xNi41MTE3MThzLTIwLjcxNDg0NCA2LjQ4ODI4MS0yNS4wMjM0MzggMTYuNTM1MTU2bC01OC40MzM1OTQgMTM2Ljc0NjA5NC0xNDcuNzk2ODc0IDEzLjQxNzk2OGMtMTAuODU5Mzc2IDEuMDAzOTA2LTIwLjAzMTI1IDguMzQzNzUtMjMuNDAyMzQ0IDE4LjcxMDkzOC0zLjM3MTA5NCAxMC4zNjcxODctLjI1NzgxMyAyMS43MzgyODEgNy45NTcwMzEgMjguOTA2MjVsMTExLjY5OTIxOSA5Ny45NjA5MzctMzIuOTM3NSAxNDUuMDg5ODQ0Yy0yLjQxMDE1NiAxMC42Njc5NjkgMS43MzA0NjggMjEuNjk1MzEzIDEwLjU4MjAzMSAyOC4wOTM3NSA0Ljc1NzgxMyAzLjQzNzUgMTAuMzI0MjE5IDUuMTg3NSAxNS45Mzc1IDUuMTg3NSA0LjgzOTg0NCAwIDkuNjQwNjI1LTEuMzA0Njg3IDEzLjk0OTIxOS0zLjg4MjgxM2wxMjcuNDY4NzUtNzYuMTgzNTkzIDEyNy40MjE4NzUgNzYuMTgzNTkzYzkuMzI0MjE5IDUuNjA5Mzc2IDIxLjA3ODEyNSA1LjA5NzY1NyAyOS45MTAxNTYtMS4zMDQ2ODcgOC44NTU0NjktNi40MTc5NjkgMTIuOTkyMTg3LTE3LjQ0OTIxOSAxMC41ODIwMzEtMjguMDkzNzVsLTMyLjkzNzUtMTQ1LjA4OTg0NCAxMTEuNjk5MjE5LTk3Ljk0MTQwNmM4LjIxNDg0NC03LjE4NzUgMTEuMzUxNTYzLTE4LjUzOTA2MyA3Ljk4MDQ2OS0yOC45MjU3ODF6bTAgMCIgZmlsbD0iI2ZmYzEwNyIvPjwvc3ZnPg==")
 }
-.restaurant-info__image{
-  max-width: 100%;
-}
-.dishes-page__list{
-  width: $dishes-list;
-  background: #f2f2f2;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 0 25px 0;
-}
-
-.dishes-page__item {
-  width: 30%;
-  margin-top: 25px;
-  margin-left: 2.5%;
-  background: #fff;
-  height: 340px;
-  position: relative;
-}
-
-.dishes-page__item-image{
-  max-width: 100%;
-  display: block;
-  cursor: pointer;
-}
-
-.dishes-page__item-name{
-  font-weight: 600;
-  margin: 15px 0;
-  display: block;
-}
-.dishes-page__item-info{
-  padding: 0 15px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background: #fff;
-  z-index: 1;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.dishes-page__item-desc{
-  display: block;
-  overflow: hidden;
-  height: 0;
-  transition: height 0.3s;
-}
-
-.dishes-page__item_open-desc{
-  .dishes-page__item-desc{
-    height: auto;
-  }
-}
-
-.dishes-page__item-details{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: 15px 0 18px 0;
-}
-
-.restaurant-info{
-  padding: 25px 0 0 0;
-
-
-  &__work-time,
-  &__delivery,
-  &__rate{
-    box-sizing: border-box;
-    padding: 0 15px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-.header{
-  height: 40px;
-  border-bottom: 1px solid #e8e8e8;
-
-  &__logo{
-    height: 40px;
-    width: auto;
-  }
-  &__phone{
-    display: inline-block;
-    margin: -3px 0 0 0;
-  }
-}
-
-.container_header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 50px;
-  box-sizing: border-box;
+%rate-star:after {
+  content: '/10';
+  display: inline-block;
 }

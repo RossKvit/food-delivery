@@ -1,0 +1,89 @@
+
+.dishes-page .container{
+  display: flex;
+}
+
+.restaurant-info{
+  display: inline-block;
+  width: $restaurant-info;
+  background: #fff;
+  border-right: 1px solid #e8e8e8;
+  border-left: 1px solid #e8e8e8;
+}
+.restaurant-info__image{
+  max-width: 100%;
+}
+.dishes-page__list{
+  width: $dishes-list;
+  background: #f2f2f2;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0 25px 0;
+  min-height: calc(100vh - 66px);
+}
+
+.dishes-page__item {
+  width: 30%;
+  margin-top: 25px;
+  margin-left: 2.5%;
+  background: #fff;
+  height: 340px;
+  position: relative;
+}
+
+.dishes-page__item-image{
+  max-width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.dishes-page__item-name{
+  font-weight: 600;
+  margin: 15px 0;
+  display: block;
+}
+.dishes-page__item-info{
+  padding: 0 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dishes-page__item-desc{
+  display: block;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.3s;
+}
+
+.dishes-page__item_open-desc{
+  .dishes-page__item-desc{
+    height: auto;
+  }
+}
+
+.dishes-page__item-details{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0 18px 0;
+}
+
+.restaurant-info{
+  padding: 25px 0 0 0;
+
+
+  &__work-time,
+  &__delivery,
+  &__rate{
+    box-sizing: border-box;
+    padding: 0 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
