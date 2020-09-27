@@ -6,3 +6,5 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     } );
 });
+
+//dishes-page__item-order
