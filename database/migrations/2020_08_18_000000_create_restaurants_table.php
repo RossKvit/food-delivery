@@ -20,6 +20,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('work_time');
             $table->string('icon');
             $table->float('rate');
+            $table->string('slug');
         });
     }
 

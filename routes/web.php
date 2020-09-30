@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +22,5 @@
 Route::get('/', 'HomeController@show');
 Route::get('/restaurants', 'RestaurantsListController@show');
 Route::get('/restaurants/{slug}', 'DishesListController@show');
+Route::get('/order', 'OrderController@showForm');
+Route::post('/createOrder', 'OrderController@create');
