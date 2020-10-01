@@ -20,7 +20,7 @@
                         <p class="dishes-page__item-details">
                             <span class="dishes-page__item-weight">{{ $dish->weight}}gm.</span>
                             <span class="dishes-page__item-price">${{ $dish->price}}</span>
-                            <button class="dishes-page__item-order">add</button>
+                            <button data-dish-id="{{$dish->id}}" class="dishes-page__item-order">add</button>
                         </p>
                     </div>
                 </div>

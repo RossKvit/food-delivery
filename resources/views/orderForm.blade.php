@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="order-form-page">
-            <form action="/createOrder" method="post" class="order-form">
+            <form action="/create-order" method="post" class="order-form">
                 <div class="order-form__item">
                     <label class="order-form__item-label" for="name">name</label>
                     <input class="order-form__item-input" type="text" id="name" name="name">

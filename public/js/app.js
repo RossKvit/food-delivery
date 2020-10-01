@@ -93,6 +93,12 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 //require('./bootstrap');
 window.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.dishes-page__item-image').forEach(function (elem) {
@@ -101,6 +107,50 @@ window.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+var Order = /*#__PURE__*/function () {
+  function Order() {
+    _classCallCheck(this, Order);
+
+    this.dataCartKey = 'cartProducts';
+    this.initEventListeners();
+  }
+
+  _createClass(Order, [{
+    key: "initEventListeners",
+    value: function initEventListeners() {
+      var self = this;
+      document.querySelectorAll('.dishes-page__item-order').forEach(function (el) {
+        console.log('45454545');
+        el.addEventListener('click', function (e) {
+          console.log('00000');
+          var dishId = e.target.getAttribute('data-dish-id');
+          self.addProductToCart(dishId);
+        });
+      });
+    }
+  }, {
+    key: "addProductToCart",
+    value: function addProductToCart(id) {
+      console.log(this.getCookie(this.dataCartKey));
+      this.setCookies(this.dataCartKey, id);
+    }
+  }, {
+    key: "setCookies",
+    value: function setCookies(dataKey, dataValue) {
+      document.cookie = dataKey + "=" + dataValue + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+  }, {
+    key: "getCookie",
+    value: function getCookie(dataKey) {
+      return document.cookie[dataKey];
+    }
+  }]);
+
+  return Order;
+}();
+
+new Order();
 
 /***/ }),
 
@@ -122,8 +172,8 @@ window.addEventListener('DOMContentLoaded', function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\OpenServer\OSPanel\domains\food-delivery.com\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\OpenServer\OSPanel\domains\food-delivery.com\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\OSPanel\domains\food-delivery.com\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\food-delivery.com\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
