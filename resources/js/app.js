@@ -18,10 +18,7 @@ class Order {
         let self = this;
 
         document.querySelectorAll('.dishes-page__item-order').forEach( function (el) {
-            console.log('45454545');
             el.addEventListener( 'click', function(e){
-                console.log('00000');
-
                 let dishId = e.target.getAttribute('data-dish-id');
                 self.addProductToCart( dishId );
             } );
@@ -29,13 +26,41 @@ class Order {
     }
 
     addProductToCart( id ) {
-        console.log( this.getCookie( this.dataCartKey ) );
+        let params = {count: 1, productId: id};
+        this.httpRequest( '/create-order', JSON.stringify( params ) );
+    }
 
-        this.setCookies( this.dataCartKey, id );
+    httpRequest( url, callback, params ) {
+        let httpRequest = new XMLHttpRequest(),
+            csrfToken = document.querySelector('.dishes-page__list').getAttribute('data-csrf-token');
+
+        if( !csrfToken ){
+            return;
+        }
+
+        httpRequest.onreadystatechange = function() {
+            if ( httpRequest.readyState == XMLHttpRequest.DONE ) {   // XMLHttpRequest.DONE == 4
+                if ( httpRequest.status == 200 ) {
+                    console.log( httpRequest.responseText );
+                }
+                else if ( httpRequest.status == 400 ) {
+                    alert('There was an error 400');
+                }
+                else {
+                    alert('something else other than 200 was returned');
+                }
+            }
+        };
+
+        httpRequest.open("POST", url, true);
+        httpRequest.setRequestHeader("Content-Type", "application/json"); // "application/json"
+        httpRequest.setRequestHeader("X-CSRF-TOKEN", csrfToken);
+
+        httpRequest.send( params );
     }
 
     setCookies( dataKey, dataValue ){
-        document.cookie = dataKey +"="+ dataValue +"; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = dataKey +"="+ dataValue +"; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
     }
 
     getCookie( dataKey ){
@@ -43,4 +68,6 @@ class Order {
     }
 }
 
-(new Order());
+document.addEventListener('DOMContentLoaded', function(){
+    (new Order()).constructor();
+});

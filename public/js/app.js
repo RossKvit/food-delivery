@@ -121,9 +121,7 @@ var Order = /*#__PURE__*/function () {
     value: function initEventListeners() {
       var self = this;
       document.querySelectorAll('.dishes-page__item-order').forEach(function (el) {
-        console.log('45454545');
         el.addEventListener('click', function (e) {
-          console.log('00000');
           var dishId = e.target.getAttribute('data-dish-id');
           self.addProductToCart(dishId);
         });
@@ -132,13 +130,45 @@ var Order = /*#__PURE__*/function () {
   }, {
     key: "addProductToCart",
     value: function addProductToCart(id) {
-      console.log(this.getCookie(this.dataCartKey));
-      this.setCookies(this.dataCartKey, id);
+      var params = {
+        count: 1,
+        productId: id
+      };
+      this.httpRequest('/create-order', JSON.stringify(params));
+    }
+  }, {
+    key: "httpRequest",
+    value: function httpRequest(url, callback, params) {
+      var httpRequest = new XMLHttpRequest(),
+          csrfToken = document.querySelector('.dishes-page__list').getAttribute('data-csrf-token');
+
+      if (!csrfToken) {
+        return;
+      }
+
+      httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == XMLHttpRequest.DONE) {
+          // XMLHttpRequest.DONE == 4
+          if (httpRequest.status == 200) {
+            console.log(httpRequest.responseText);
+          } else if (httpRequest.status == 400) {
+            alert('There was an error 400');
+          } else {
+            alert('something else other than 200 was returned');
+          }
+        }
+      };
+
+      httpRequest.open("POST", url, true);
+      httpRequest.setRequestHeader("Content-Type", "application/json"); // "application/json"
+
+      httpRequest.setRequestHeader("X-CSRF-TOKEN", csrfToken);
+      httpRequest.send(params);
     }
   }, {
     key: "setCookies",
     value: function setCookies(dataKey, dataValue) {
-      document.cookie = dataKey + "=" + dataValue + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = dataKey + "=" + dataValue + "; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
     }
   }, {
     key: "getCookie",
@@ -150,7 +180,9 @@ var Order = /*#__PURE__*/function () {
   return Order;
 }();
 
-new Order();
+document.addEventListener('DOMContentLoaded', function () {
+  new Order().constructor();
+});
 
 /***/ }),
 
@@ -172,8 +204,8 @@ new Order();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OSPanel\domains\food-delivery.com\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\food-delivery.com\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\OpenServer\OSPanel\domains\food-delivery.com\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\OpenServer\OSPanel\domains\food-delivery.com\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

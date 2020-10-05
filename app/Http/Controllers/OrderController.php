@@ -13,5 +13,6 @@ class OrderController extends Controller
     public function create( Request $request ){
         error_log( print_r($request, true) );
         var_dump( $request );
+        echo '111';
     }
 }
