@@ -27,7 +27,7 @@ class Order {
 
     addProductToCart( id ) {
         let params = {count: 1, productId: id};
-        this.httpRequest( '/create-order', JSON.stringify( params ) );
+        this.httpRequest( '/create-order', null, JSON.stringify( params ) );
     }
 
     httpRequest( url, callback, params ) {
@@ -59,15 +59,16 @@ class Order {
         httpRequest.send( params );
     }
 
-    setCookies( dataKey, dataValue ){
-        document.cookie = dataKey +"="+ dataValue +"; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
+    addDish( newDishData ){
+        this.getDishes();
+        document.cookie = this.dataCartKey +"="+ JSON.stringify()dataValue +"; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
     }
 
-    getCookie( dataKey ){
-        return document.cookie[dataKey];
+    getDishes(){
+        return document.cookie[this.dataCartKey];
     }
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-    (new Order()).constructor();
+    (new Order()); //.constructor();
 });
