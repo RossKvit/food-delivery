@@ -11,6 +11,7 @@ class Order {
 
     constructor(){
         this.dataCartKey = 'cartProducts';
+        this.cartDishes = this.getDishesList();
         this.initEventListeners();
     }
 
@@ -26,8 +27,23 @@ class Order {
     }
 
     addProductToCart( id ) {
-        let params = {count: 1, productId: id};
-        this.httpRequest( '/create-order', null, JSON.stringify( params ) );
+        let currentProductPos = null;
+        this.cartDishes.map( (item, key) => { if( item.productId === id ){ currentProductPos = key; } } );
+
+        if( currentProductPos !== null ){
+            this.cartDishes[currentProductPos] = ( {count: this.cartDishes[currentProductPos].count+1, productId: id} );
+        }else{
+            this.cartDishes.push( {count: 1, productId: id} );
+        }
+
+        this.updateDishesList();
+        //this.httpRequest( '/create-order', null, JSON.stringify( params ) );
+    }
+
+    showCartPopup(){
+        if( document.querySelector('.') ){
+
+        }
     }
 
     httpRequest( url, callback, params ) {
@@ -59,13 +75,16 @@ class Order {
         httpRequest.send( params );
     }
 
-    addDish( newDishData ){
-        this.getDishes();
-        document.cookie = this.dataCartKey +"="+ JSON.stringify()dataValue +"; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
+    updateDishesList(){
+        document.cookie = this.dataCartKey +"="+ JSON.stringify( this.cartDishes ) +"; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
     }
 
-    getDishes(){
-        return document.cookie[this.dataCartKey];
+    getDishesList(){
+        if( document.cookie[this.dataCartKey] ){
+            return JSON.parse( document.cookie[this.dataCartKey] );
+        }else{
+            return [];
+        }
     }
 }
 

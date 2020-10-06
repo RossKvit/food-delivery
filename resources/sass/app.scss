@@ -136,3 +136,11 @@ html, body {
   content: '/10';
   display: inline-block;
 }
+
+.cart-popup{
+  display: block;
+  position: absolute;
+  width: 200px;
+  right: 0;
+  bottom: 0;
+}

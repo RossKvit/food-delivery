@@ -21,6 +21,8 @@
                 </div>
             @endforeach
         </div>
+
+        @include('cartPopup', ['order_link' => '/order'] )
     </div>
 </div>
 @endsection

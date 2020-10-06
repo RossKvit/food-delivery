@@ -93,7 +93,121 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\resources\\js\\app.js: Unexpected token, expected \";\" (64:65)\n\n\u001b[0m \u001b[90m 62 | \u001b[39m    addDish( newDishData ){\u001b[0m\n\u001b[0m \u001b[90m 63 | \u001b[39m        \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetDishes()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 64 | \u001b[39m        document\u001b[33m.\u001b[39mcookie \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdataCartKey \u001b[33m+\u001b[39m\u001b[32m\"=\"\u001b[39m\u001b[33m+\u001b[39m \u001b[33mJSON\u001b[39m\u001b[33m.\u001b[39mstringify()dataValue \u001b[33m+\u001b[39m\u001b[32m\"; expires= 01 Jan 2025 00:00:00 UTC; path=/;\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 65 | \u001b[39m    }\u001b[0m\n\u001b[0m \u001b[90m 66 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 67 | \u001b[39m    getDishes(){\u001b[0m\n    at Parser._raise (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:766:17)\n    at Parser.raiseWithData (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:759:17)\n    at Parser.raise (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:753:17)\n    at Parser.unexpected (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:8966:16)\n    at Parser.semicolon (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:8948:40)\n    at Parser.parseExpressionStatement (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:11970:10)\n    at Parser.parseStatementContent (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:11566:19)\n    at Parser.parseStatement (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:11430:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:12012:25)\n    at Parser.parseBlockBody (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:11998:10)\n    at Parser.parseBlock (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:11982:10)\n    at Parser.parseFunctionBody (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:10962:24)\n    at Parser.parseFunctionBodyAndFinish (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:10945:10)\n    at Parser.parseMethod (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:10882:10)\n    at Parser.pushClassMethod (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:12429:30)\n    at Parser.parseClassMemberWithIsStatic (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:12346:12)\n    at Parser.parseClassMember (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:12288:10)\n    at withTopicForbiddingContext (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:12240:14)\n    at Parser.withTopicForbiddingContext (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:11271:14)\n    at Parser.parseClassBody (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:12217:10)\n    at Parser.parseClass (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:12192:22)\n    at Parser.parseStatementContent (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:11472:21)\n    at Parser.parseStatement (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:11430:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:12012:25)\n    at Parser.parseBlockBody (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:11998:10)\n    at Parser.parseTopLevel (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:11361:10)\n    at Parser.parse (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:13044:10)\n    at parse (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\parser\\lib\\index.js:13097:38)\n    at parser (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\core\\lib\\parser\\index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:99:38)\n    at normalizeFile.next (<anonymous>)\n    at run (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\core\\lib\\transformation\\index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (D:\\OpenServer\\OSPanel\\domains\\food-delivery.com\\node_modules\\@babel\\core\\lib\\transform.js:27:41)\n    at transform.next (<anonymous>)");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+//require('./bootstrap');
+window.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.dishes-page__item-image').forEach(function (elem) {
+    elem.addEventListener('click', function (e) {
+      e.target.parentElement.classList.toggle('dishes-page__item_open-desc');
+    });
+  });
+});
+
+var Order = /*#__PURE__*/function () {
+  function Order() {
+    _classCallCheck(this, Order);
+
+    this.dataCartKey = 'cartProducts';
+    this.cartDishes = this.getDishesList();
+    this.initEventListeners();
+  }
+
+  _createClass(Order, [{
+    key: "initEventListeners",
+    value: function initEventListeners() {
+      var self = this;
+      document.querySelectorAll('.dishes-page__item-order').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          var dishId = e.target.getAttribute('data-dish-id');
+          self.addProductToCart(dishId);
+        });
+      });
+    }
+  }, {
+    key: "addProductToCart",
+    value: function addProductToCart(id) {
+      var currentProductPos = null;
+      this.cartDishes.map(function (item, key) {
+        if (item.productId === id) {
+          currentProductPos = key;
+        }
+      });
+
+      if (currentProductPos !== null) {
+        this.cartDishes[currentProductPos] = {
+          count: this.cartDishes[currentProductPos].count + 1,
+          productId: id
+        };
+      } else {
+        this.cartDishes.push({
+          count: 1,
+          productId: id
+        });
+      }
+
+      this.updateDishesList(); //this.httpRequest( '/create-order', null, JSON.stringify( params ) );
+    }
+  }, {
+    key: "showCartPopup",
+    value: function showCartPopup() {
+      if (document.querySelector('.')) {}
+    }
+  }, {
+    key: "httpRequest",
+    value: function httpRequest(url, callback, params) {
+      var httpRequest = new XMLHttpRequest(),
+          csrfToken = document.querySelector('.dishes-page__list').getAttribute('data-csrf-token');
+
+      if (!csrfToken) {
+        return;
+      }
+
+      httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == XMLHttpRequest.DONE) {
+          // XMLHttpRequest.DONE == 4
+          if (httpRequest.status == 200) {
+            console.log(httpRequest.responseText);
+          } else if (httpRequest.status == 400) {
+            alert('There was an error 400');
+          } else {
+            alert('something else other than 200 was returned');
+          }
+        }
+      };
+
+      httpRequest.open("POST", url, true);
+      httpRequest.setRequestHeader("Content-Type", "application/json"); // "application/json"
+
+      httpRequest.setRequestHeader("X-CSRF-TOKEN", csrfToken);
+      httpRequest.send(params);
+    }
+  }, {
+    key: "updateDishesList",
+    value: function updateDishesList() {
+      document.cookie = this.dataCartKey + "=" + JSON.stringify(this.cartDishes) + "; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
+    }
+  }, {
+    key: "getDishesList",
+    value: function getDishesList() {
+      if (document.cookie[this.dataCartKey]) {
+        return JSON.parse(document.cookie[this.dataCartKey]);
+      } else {
+        return [];
+      }
+    }
+  }]);
+
+  return Order;
+}();
+
+document.addEventListener('DOMContentLoaded', function () {
+  new Order(); //.constructor();
+});
 
 /***/ }),
 
@@ -115,8 +229,8 @@ throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\OpenServer\OSPanel\domains\food-delivery.com\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\OpenServer\OSPanel\domains\food-delivery.com\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\OSPanel\domains\food-delivery.com\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\food-delivery.com\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
