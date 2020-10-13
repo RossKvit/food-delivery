@@ -122,6 +122,8 @@ html, body {
 
 @import './dishes-page.scss';
 @import './restaurants-page.scss';
+@import './cart-pop-up.scss';
+
 
 %rate-star:before {
   content: '';
@@ -135,12 +137,4 @@ html, body {
 %rate-star:after {
   content: '/10';
   display: inline-block;
-}
-
-.cart-popup{
-  display: block;
-  position: absolute;
-  width: 200px;
-  right: 0;
-  bottom: 0;
 }

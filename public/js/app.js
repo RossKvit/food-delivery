@@ -115,6 +115,7 @@ var Order = /*#__PURE__*/function () {
     this.dataCartKey = 'cartProducts';
     this.cartDishes = this.getDishesList();
     this.initEventListeners();
+    this.showHideCartPopup();
   }
 
   _createClass(Order, [{
@@ -153,9 +154,17 @@ var Order = /*#__PURE__*/function () {
       this.updateDishesList(); //this.httpRequest( '/create-order', null, JSON.stringify( params ) );
     }
   }, {
-    key: "showCartPopup",
-    value: function showCartPopup() {
-      if (document.querySelector('.')) {}
+    key: "showHideCartPopup",
+    value: function showHideCartPopup() {
+      console.log(this.cartDishes);
+
+      if (this.cartDishes.length > 0) {
+        var cartHtml = document.querySelector('.cart-popup');
+
+        if (cartHtml) {
+          cartHtml.classList.toggle('cart-popup_visible');
+        }
+      }
     }
   }, {
     key: "httpRequest",
@@ -190,12 +199,23 @@ var Order = /*#__PURE__*/function () {
     key: "updateDishesList",
     value: function updateDishesList() {
       document.cookie = this.dataCartKey + "=" + JSON.stringify(this.cartDishes) + "; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
+      this.showHideCartPopup();
     }
   }, {
     key: "getDishesList",
     value: function getDishesList() {
-      if (document.cookie[this.dataCartKey]) {
-        return JSON.parse(document.cookie[this.dataCartKey]);
+      var cookieList = document.cookie.split(";");
+      cookieList.map(function (cookieItem) {
+        cookieItem = cookieItem.split("=");
+        var cookieItemObj = {};
+        cookieItemObj[cookieItem[0]] = cookieItem[1];
+        return cookieItemObj;
+      });
+      console.log('cookieList');
+      console.log(cookieList);
+
+      if (cookieList[this.dataCartKey]) {
+        return JSON.parse(cookieList[this.dataCartKey]);
       } else {
         return [];
       }

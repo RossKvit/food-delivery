@@ -1,0 +1,24 @@
+.cart-popup{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  height: 58px;
+  width: 290px;
+  right: 0;
+  bottom: 0;
+  background: #ccc;
+  padding: 0 1%;
+  box-sizing: border-box;
+  transform: translate(0, 58px);
+  transition: transform 0.3s;
+
+  &_visible{
+    transform: translate(0, 0);
+  }
+
+  &__order-link{
+    color: #000;
+  }
+}
+//.cart-popup__counter{}

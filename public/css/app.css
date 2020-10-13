@@ -124,6 +124,7 @@ body {
 .dishes-page .container {
   display: flex;
   position: relative;
+  overflow: hidden;
 }
 
 .restaurant-info,
@@ -246,6 +247,30 @@ body {
   background: #f8f8f8;
 }
 
+.cart-popup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  height: 58px;
+  width: 290px;
+  right: 0;
+  bottom: 0;
+  background: #ccc;
+  padding: 0 1%;
+  box-sizing: border-box;
+  transform: translate(0, 58px);
+  transition: transform 0.3s;
+}
+
+.cart-popup_visible {
+  transform: translate(0, 0);
+}
+
+.cart-popup__order-link {
+  color: #000;
+}
+
 .restaurants-page__item-rate:before {
   content: "";
   width: 13px;
@@ -259,13 +284,5 @@ body {
 .restaurants-page__item-rate:after {
   content: "/10";
   display: inline-block;
-}
-
-.cart-popup {
-  display: block;
-  position: absolute;
-  width: 200px;
-  right: 0;
-  bottom: 0;
 }
 

@@ -13,6 +13,7 @@ class Order {
         this.dataCartKey = 'cartProducts';
         this.cartDishes = this.getDishesList();
         this.initEventListeners();
+        this.showHideCartPopup();
     }
 
     initEventListeners() {
@@ -37,12 +38,17 @@ class Order {
         }
 
         this.updateDishesList();
+
         //this.httpRequest( '/create-order', null, JSON.stringify( params ) );
     }
 
-    showCartPopup(){
-        if( document.querySelector('.') ){
-
+    showHideCartPopup(){
+        console.log(this.cartDishes);
+        if( this.cartDishes.length > 0 ){
+            let cartHtml = document.querySelector('.cart-popup');
+            if( cartHtml ){
+                cartHtml.classList.toggle( 'cart-popup_visible' );
+            }
         }
     }
 
@@ -77,11 +83,25 @@ class Order {
 
     updateDishesList(){
         document.cookie = this.dataCartKey +"="+ JSON.stringify( this.cartDishes ) +"; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
+
+        this.showHideCartPopup();
     }
 
     getDishesList(){
-        if( document.cookie[this.dataCartKey] ){
-            return JSON.parse( document.cookie[this.dataCartKey] );
+        let cookieList = document.cookie.split(";");
+
+        cookieList.map( function ( cookieItem ) {
+            cookieItem = cookieItem.split("=");
+            let cookieItemObj = {};
+            cookieItemObj[ cookieItem[0] ] = cookieItem[1];
+            return cookieItemObj;
+        } );
+
+        console.log( 'cookieList' );
+        console.log( cookieList );
+
+        if( cookieList[this.dataCartKey] ){
+            return JSON.parse( cookieList[this.dataCartKey] );
         }else{
             return [];
         }
