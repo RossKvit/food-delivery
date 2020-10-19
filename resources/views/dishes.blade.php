@@ -9,7 +9,7 @@
             <div class="restaurant-info__work-time"><span>Work time:</span> <span>{{ $restaurant->work_time }}</span></div>
             <div class="restaurant-info__delivery"><span>Delivery price:</span> <span>${{ $restaurant->delivery_price }}</span></div>
         </div>
-        <div class="dishes-page__list" data-csrf-token="{{ csrf_token() }}" >
+        <div class="dishes-page__list" >
             @foreach ($dishesList as $dish)
                 <div class="dishes-page__item">
                     {{--<img class="dishes-page__item-image" src="{{ $dish->image }}" alt="{{ $dish->name }}">--}}
@@ -20,7 +20,7 @@
                         <p class="dishes-page__item-details">
                             <span class="dishes-page__item-weight">{{ $dish->weight}}gm.</span>
                             <span class="dishes-page__item-price">${{ $dish->price}}</span>
-                            <button data-dish-id="{{$dish->id}}" class="dishes-page__item-order">add</button>
+                            <button data-dish-id="{{$dish->id}}" data-dish-price="{{ $dish->price }}" class="dishes-page__item-order">add</button>
                         </p>
                     </div>
                 </div>

@@ -12,4 +12,10 @@ class Order extends Model
         return self::query();
 
     }
+
+    public function add( array $order_data ){
+        $this->getQB()->insert([
+            ['name' => $order_data['name'], 'address' => $order_data['address'], 'phone' => $order_data['phone'], 'order_dishes' => serialize($order_data['orderList'])]
+        ]);
+    }
 }

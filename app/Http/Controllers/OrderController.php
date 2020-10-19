@@ -24,11 +24,9 @@ class OrderController extends Controller
         /*$this->order->getQB()->insert(
             ['name' => 'john@example.com', 'phone' => 0, 'dishes' => '']
         );*/
-        //{count: 1, productId: id};
 
-        //error_log( print_r($request, true) );
-        var_dump( $request->input('productId') );
-        //echo $request;
-        echo '111';
+        var_dump( $request->input('order') );
+        $this->order->add( $request->input('order') );
+
     }
 }

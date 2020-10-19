@@ -86,31 +86,25 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/js/Cart.js":
+/*!******************************!*\
+  !*** ./resources/js/Cart.js ***!
+  \******************************/
+/*! exports provided: Cart */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cart", function() { return Cart; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-//require('./bootstrap');
-window.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.dishes-page__item-image').forEach(function (elem) {
-    elem.addEventListener('click', function (e) {
-      e.target.parentElement.classList.toggle('dishes-page__item_open-desc');
-    });
-  });
-});
-
-var Order = /*#__PURE__*/function () {
-  function Order() {
-    _classCallCheck(this, Order);
+var Cart = /*#__PURE__*/function () {
+  function Cart() {
+    _classCallCheck(this, Cart);
 
     this.dataCartKey = 'cartProducts';
     this.cartDishes = this.getDishesList();
@@ -118,20 +112,21 @@ var Order = /*#__PURE__*/function () {
     this.showHideCartPopup();
   }
 
-  _createClass(Order, [{
+  _createClass(Cart, [{
     key: "initEventListeners",
     value: function initEventListeners() {
       var self = this;
       document.querySelectorAll('.dishes-page__item-order').forEach(function (el) {
         el.addEventListener('click', function (e) {
-          var dishId = e.target.getAttribute('data-dish-id');
-          self.addProductToCart(dishId);
+          var dishId = e.target.getAttribute('data-dish-id'),
+              dishPrice = e.target.getAttribute('data-dish-price');
+          self.addProductToCart(dishId, dishPrice);
         });
       });
     }
   }, {
     key: "addProductToCart",
-    value: function addProductToCart(id) {
+    value: function addProductToCart(id, dishPrice) {
       var currentProductPos = null;
       this.cartDishes.map(function (item, key) {
         if (item.productId === id) {
@@ -142,35 +137,148 @@ var Order = /*#__PURE__*/function () {
       if (currentProductPos !== null) {
         this.cartDishes[currentProductPos] = {
           count: this.cartDishes[currentProductPos].count + 1,
-          productId: id
+          productId: id,
+          dishPrice: dishPrice
         };
       } else {
         this.cartDishes.push({
           count: 1,
-          productId: id
+          productId: id,
+          dishPrice: dishPrice
         });
       }
 
-      this.updateDishesList(); //this.httpRequest( '/create-order', null, JSON.stringify( params ) );
+      this.updateDishesList();
+    }
+  }, {
+    key: "getCartTotal",
+    value: function getCartTotal() {
+      var totalPrice = 0;
+      this.cartDishes.forEach(function (dish) {
+        totalPrice += dish.count * dish.dishPrice;
+      });
+      return totalPrice;
+    }
+  }, {
+    key: "getCartProductCount",
+    value: function getCartProductCount() {
+      var productCount = 0;
+      this.cartDishes.forEach(function (dish) {
+        productCount += dish.count;
+      });
+      return productCount;
     }
   }, {
     key: "showHideCartPopup",
     value: function showHideCartPopup() {
-      console.log(this.cartDishes);
-
       if (this.cartDishes.length > 0) {
         var cartHtml = document.querySelector('.cart-popup');
 
         if (cartHtml) {
           cartHtml.classList.toggle('cart-popup_visible');
+          console.log(this.cartDishes);
+          cartHtml.querySelector('.cart-popup__counter-value').innerHTML = this.getCartProductCount() + ' ($' + this.getCartTotal() + ')';
         }
+      }
+    }
+  }, {
+    key: "updateDishesList",
+    value: function updateDishesList() {
+      document.cookie = this.dataCartKey + "=" + JSON.stringify(this.cartDishes) + "; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
+      this.showHideCartPopup();
+    }
+  }, {
+    key: "getDishesList",
+    value: function getDishesList() {
+      var cookieList = document.cookie.split(";"),
+          self = this;
+      cookieList.forEach(function (cookieItem, key) {
+        cookieItem = cookieItem.split("=");
+        var cookieItemObj = {};
+        cookieItemObj[cookieItem[0].trim()] = cookieItem[1];
+        cookieList[key] = cookieItemObj;
+      });
+      var dishesList = cookieList.filter(function (item) {
+        if (typeof item[self.dataCartKey] !== 'undefined') {
+          return item[self.dataCartKey];
+        }
+      });
+
+      if (typeof dishesList[0] !== 'undefined' && dishesList[0][self.dataCartKey]) {
+        return JSON.parse(dishesList[0][self.dataCartKey]);
+      } else {
+        return [];
+      }
+    }
+  }]);
+
+  return Cart;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Order.js":
+/*!*******************************!*\
+  !*** ./resources/js/Order.js ***!
+  \*******************************/
+/*! exports provided: Order */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Order", function() { return Order; });
+/* harmony import */ var _Cart__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Cart */ "./resources/js/Cart.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Order = /*#__PURE__*/function () {
+  function Order() {
+    _classCallCheck(this, Order);
+
+    this.form = document.querySelector('.order-form') ? document.querySelector('.order-form') : false;
+
+    if (this.form !== false) {
+      this.cart = new _Cart__WEBPACK_IMPORTED_MODULE_0__["Cart"]();
+      console.log(this.cart);
+      this.initEventListeners();
+    }
+  }
+
+  _createClass(Order, [{
+    key: "initEventListeners",
+    value: function initEventListeners() {
+      var self = this;
+
+      if (document.querySelector('.order-form__submit')) {
+        document.querySelector('.order-form__submit').addEventListener('click', function (e) {
+          e.preventDefault();
+          var params = {
+            name: self.form.name.value,
+            address: self.form.address.value,
+            phone: self.form.phone.value,
+            orderList: self.cart.getDishesList()
+          };
+          console.log({
+            order: params
+          });
+          self.httpRequest('/create-order', null, JSON.stringify({
+            order: params
+          }));
+        });
       }
     }
   }, {
     key: "httpRequest",
     value: function httpRequest(url, callback, params) {
       var httpRequest = new XMLHttpRequest(),
-          csrfToken = document.querySelector('.dishes-page__list').getAttribute('data-csrf-token');
+          csrfToken = document.querySelector('.order-form').getAttribute('data-csrf-token');
 
       if (!csrfToken) {
         return;
@@ -195,38 +303,87 @@ var Order = /*#__PURE__*/function () {
       httpRequest.setRequestHeader("X-CSRF-TOKEN", csrfToken);
       httpRequest.send(params);
     }
-  }, {
-    key: "updateDishesList",
-    value: function updateDishesList() {
-      document.cookie = this.dataCartKey + "=" + JSON.stringify(this.cartDishes) + "; expires= 01 Jan 2025 00:00:00 UTC; path=/;";
-      this.showHideCartPopup();
-    }
-  }, {
-    key: "getDishesList",
-    value: function getDishesList() {
-      var cookieList = document.cookie.split(";");
-      cookieList.map(function (cookieItem) {
-        cookieItem = cookieItem.split("=");
-        var cookieItemObj = {};
-        cookieItemObj[cookieItem[0]] = cookieItem[1];
-        return cookieItemObj;
-      });
-      console.log('cookieList');
-      console.log(cookieList);
-
-      if (cookieList[this.dataCartKey]) {
-        return JSON.parse(cookieList[this.dataCartKey]);
-      } else {
-        return [];
-      }
-    }
   }]);
 
   return Order;
 }();
 
+
+
+/***/ }),
+
+/***/ "./resources/js/Style.js":
+/*!*******************************!*\
+  !*** ./resources/js/Style.js ***!
+  \*******************************/
+/*! exports provided: Style */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Style", function() { return Style; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Style = /*#__PURE__*/function () {
+  function Style() {
+    _classCallCheck(this, Style);
+
+    this.initEventListeners();
+  }
+
+  _createClass(Style, [{
+    key: "initEventListeners",
+    value: function initEventListeners() {
+      window.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.dishes-page__item-image').forEach(function (elem) {
+          elem.addEventListener('click', function (e) {
+            e.target.parentElement.classList.toggle('dishes-page__item_open-desc');
+          });
+        });
+      });
+    }
+  }]);
+
+  return Style;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/app.js":
+/*!*****************************!*\
+  !*** ./resources/js/app.js ***!
+  \*****************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Cart__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Cart */ "./resources/js/Cart.js");
+/* harmony import */ var _Style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Style */ "./resources/js/Style.js");
+/* harmony import */ var _Order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Order */ "./resources/js/Order.js");
+
+
+
+/*
+class App{
+    constructor(){
+    }
+}
+console.log(Cart);
+let app;
+*/
+
 document.addEventListener('DOMContentLoaded', function () {
-  new Order(); //.constructor();
+  //app = new App();
+  new _Style__WEBPACK_IMPORTED_MODULE_1__["Style"]();
+  var activeCart = new _Cart__WEBPACK_IMPORTED_MODULE_0__["Cart"]();
+  new _Order__WEBPACK_IMPORTED_MODULE_2__["Order"](activeCart);
 });
 
 /***/ }),
