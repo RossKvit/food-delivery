@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 
-
 class OrderController extends Controller
 {
     private $order;
@@ -15,8 +14,10 @@ class OrderController extends Controller
         $this->order = $order;
     }
 
-    public function showForm(  ){
-        return view('orderForm', ['description' => 'Food delivery service', 'order_title' => 'Order' ]);
+    public function showForm(){
+
+        $cartProducts = json_decode($_COOKIE['cartProducts']);
+        return view('orderForm', ['description' => 'Food delivery service', 'order_title' => 'Order', 'cart_products' => $cartProducts ]);
     }
 
     public function create( Request $request ){
