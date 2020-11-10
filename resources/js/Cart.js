@@ -5,6 +5,7 @@ class Cart {
         this.cartDishes = this.getDishesList();
         this.initEventListeners();
         this.showHideCartPopup();
+        this.initRemoveProdButtons();
     }
 
     initEventListeners() {
@@ -15,19 +16,32 @@ class Cart {
                 let dishId = e.target.getAttribute('data-dish-id'),
                     dishPrice = e.target.getAttribute('data-dish-price');
 
-                self.addProductToCart( dishId, dishPrice );
+                self.addCartProduct( dishId, dishPrice );
             } );
         } );
     }
 
-    addProductToCart( id, dishPrice ) {
+    addCartProduct( id, dishPrice ) {
         let currentProductPos = null;
-        this.cartDishes.map( (item, key) => { if( item.productId === id ){ currentProductPos = key; } } );
+        if( this.cartDishes.length > 0 ){
+            this.cartDishes.map( (item, key) => { if( item.productId === id ){ currentProductPos = key; } } );
+        }
 
         if( currentProductPos !== null ){
             this.cartDishes[currentProductPos] = ( {count: this.cartDishes[currentProductPos].count+1, productId: id, dishPrice: dishPrice} );
         }else{
             this.cartDishes.push( {count: 1, productId: id, dishPrice: dishPrice} );
+        }
+
+        this.updateDishesList();
+    }
+
+    removeProductFromCart( id ) {
+        let currentProductPos = null;
+        this.cartDishes.map( (item, key) => { if( item.productId === id ){ currentProductPos = key; } } );
+
+        if( currentProductPos !== null ){
+            this.cartDishes.splice(currentProductPos, 1);
         }
 
         this.updateDishesList();
@@ -44,22 +58,26 @@ class Cart {
 
     getCartProductCount(){
         let productCount = 0;
-        this.cartDishes.forEach( function (dish) {
-            productCount += dish.count;
-        } );
+        console.log( this.cartDishes );
+        if( this.cartDishes.length > 0 ){
+            this.cartDishes.forEach( function (dish) {
+                productCount += dish.count;
+            } );
+        }
 
         return productCount;
     }
 
     showHideCartPopup(){
-
-        if( this.cartDishes.length > 0 ){
-            let cartHtml = document.querySelector('.cart-popup');
-            if( cartHtml ){
-                cartHtml.classList.toggle( 'cart-popup_visible' );
-                console.log(this.cartDishes);
-                cartHtml.querySelector('.cart-popup__counter-value').innerHTML = this.getCartProductCount()+ ' ($' + this.getCartTotal() + ')';
+        let cartHtml = document.querySelector('.cart-popup');
+        if( cartHtml ){
+            console.log(!cartHtml.classList.contains('cart-popup_visible'));
+            if( this.cartDishes.length > 0 && !cartHtml.classList.contains('cart-popup_visible') ){
+                    cartHtml.classList.add( 'cart-popup_visible' );
+            }else if( this.cartDishes.length === 0 ){
+                cartHtml.classList.remove( 'cart-popup_visible' );
             }
+            cartHtml.querySelector('.cart-popup__counter-value').innerHTML = this.getCartProductCount()+ ' ($' + this.getCartTotal() + ')';
         }
     }
 
@@ -91,6 +109,19 @@ class Cart {
             return JSON.parse( dishesList[0][self.dataCartKey] );
         }else{
             return [];
+        }
+    }
+
+    initRemoveProdButtons(){
+        let self = this;
+
+        if( document.querySelector('.order-cart__prod-item-remove') ){
+            document.querySelectorAll('.order-cart__prod-item-remove').forEach( function (el) {
+                el.addEventListener( 'click', function(e){
+                    var prodId = e.target.parentNode.getAttribute('data-id');
+                    self.removeProductFromCart( prodId );
+                });
+            });
         }
     }
 }
