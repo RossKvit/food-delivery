@@ -236,6 +236,78 @@ body {
   color: #000;
 }
 
+.order-form-page {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.order-form-page__title {
+  text-align: center;
+}
+
+.order-cart__title {
+  margin: 30px 0 25px 0;
+  text-align: center;
+}
+
+.order-form__item {
+  margin: 0 0 10px 0;
+}
+
+.order-form__item-label {
+  min-width: 80px;
+  display: inline-block;
+}
+
+.order-form__item-input {
+  width: calc( 100% - 92px );
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.order-form__submit {
+  margin: 14px auto 0;
+  display: block;
+}
+
+.order-cart__prod-item-name {
+  width: 200px;
+  display: inline-block;
+}
+
+.order-cart__prod-item {
+  display: flex;
+  margin: 0 0 15px 0;
+}
+
+.order-cart__prod-item-remove {
+  height: 22px;
+}
+
+.order-cart__prod-item-count {
+  margin: 0 10px;
+}
+
+.order-cart__prod-item-price {
+  margin: 0 10px 0 0;
+}
+
+:-ms-input-placeholder {
+  color: #636b6f66;
+}
+
+::-moz-placeholder {
+  color: #636b6f66;
+}
+
+::-ms-input-placeholder {
+  color: #636b6f66;
+}
+
+::placeholder {
+  color: #636b6f66;
+}
+
 .restaurants-page__item-rate:before {
   content: "";
   width: 13px;
