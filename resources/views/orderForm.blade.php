@@ -26,7 +26,7 @@
 
                 <div class="order-cart__prods-list">
                     @foreach ($cart_products as $prod)
-                        <div class="order-cart__prod-item" data-id="{{ $prod->id }}">
+                        <div class="order-cart__prod-item" data-id="{{ $prod->id }}" data-price="{{ $prod->price }}" >
                             <span class="order-cart__prod-item-name">{{ $prod->name }}</span>
                             <span class="order-cart__prod-item-count">Count: <input type="text" class="order-cart__prod-item-count-value" value="{{ $prod->count }}"> </span>
                             <span class="order-cart__prod-item-price">Price: ${{ $prod->price }}</span>

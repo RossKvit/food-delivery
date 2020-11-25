@@ -6,6 +6,7 @@ class Cart {
         this.initEventListeners();
         this.showHideCartPopup();
         this.initRemoveProdButtons();
+        this.initChangeCountInputs();
     }
 
     initEventListeners() {
@@ -34,6 +35,22 @@ class Cart {
         }
 
         this.updateDishesList();
+    }
+
+    setCartProductCount(id, count){
+        let currentProductPos = null;
+        if( this.cartDishes.length > 0 ){
+            this.cartDishes.map( (item, key) => { if( item.productId === id ){ currentProductPos = key; } } );
+        }
+
+        if( currentProductPos !== null ){
+            this.cartDishes[currentProductPos].count = count;
+        }else{
+            return false;
+        }
+
+        this.updateDishesList();
+        return true;
     }
 
     removeProductFromCart( id ) {
@@ -118,8 +135,27 @@ class Cart {
         if( document.querySelector('.order-cart__prod-item-remove') ){
             document.querySelectorAll('.order-cart__prod-item-remove').forEach( function (el) {
                 el.addEventListener( 'click', function(e){
-                    var prodId = e.target.parentNode.getAttribute('data-id');
+                    var prodId = e.target.closest('.order-cart__prod-item').getAttribute('data-id');
                     self.removeProductFromCart( prodId );
+                });
+            });
+        }
+    }
+
+    initChangeCountInputs(){
+        let self = this;
+
+        if( document.querySelector('.order-cart__prod-item-count-value') ){
+            document.querySelectorAll('.order-cart__prod-item-count-value').forEach( function (el) {
+                el.addEventListener( 'change', function(e){
+                    var prodId = e.target.closest('.order-cart__prod-item').getAttribute('data-id'),
+                        prodPrice = e.target.closest('.order-cart__prod-item').getAttribute('data-price');
+
+                    if( prodId && prodPrice ){
+                        self.addCartProduct( prodId, prodPrice, e.target.value );
+                    }else{
+                        alert('Item not founded');
+                    }
                 });
             });
         }
