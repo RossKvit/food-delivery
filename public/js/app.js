@@ -284,11 +284,10 @@ var Cart = /*#__PURE__*/function () {
       if (document.querySelector('.order-cart__prod-item-count-value')) {
         document.querySelectorAll('.order-cart__prod-item-count-value').forEach(function (el) {
           el.addEventListener('change', function (e) {
-            var prodId = e.target.closest('.order-cart__prod-item').getAttribute('data-id'),
-                prodPrice = e.target.closest('.order-cart__prod-item').getAttribute('data-price');
+            var prodId = e.target.closest('.order-cart__prod-item').getAttribute('data-id');
 
-            if (prodId && prodPrice) {
-              self.addCartProduct(prodId, prodPrice, e.target.value);
+            if (prodId) {
+              self.setCartProductCount(prodId, e.target.value);
             } else {
               alert('Item not founded');
             }

@@ -66,7 +66,7 @@ class OrderController extends Controller
             ['name' => 'john@example.com', 'phone' => 0, 'dishes' => '']
         );*/
 
-        //var_dump( $request->input('order') );
+        error_log( print_r( $request->input('order') ));
         $this->order->add( $request->input('order') );
 
     }
