@@ -7,7 +7,6 @@ class Order {
 
         if(this.form !== false ){
             this.cart = (new Cart());
-            console.log(this.cart);
             this.initEventListeners();
         }
     }
@@ -26,12 +25,18 @@ class Order {
                 };
                 console.log({order: params});
 
-                self.httpRequest( '/create-order', null, JSON.stringify( {order: params} ) );
+                self.httpRequest( '/create-order', function( httpRequest ){
+                    if ( httpRequest.status == 200 ) {
+                        alert('Order created =)');
+                        self.cart.clearDishesList();
+                        window.location.replace("/");
+                    } else {
+                        alert('Sorry. Order failed by unexpected error =(');
+                    }
+                }, JSON.stringify( {order: params} ) );
             });
         }
     }
-
-
 
     httpRequest( url, callback, params ) {
         let httpRequest = new XMLHttpRequest(),
@@ -43,15 +48,7 @@ class Order {
 
         httpRequest.onreadystatechange = function() {
             if ( httpRequest.readyState == XMLHttpRequest.DONE ) {   // XMLHttpRequest.DONE == 4
-                if ( httpRequest.status == 200 ) {
-                    console.log( httpRequest.responseText );
-                }
-                else if ( httpRequest.status == 400 ) {
-                    alert('There was an error 400');
-                }
-                else {
-                    alert('something else other than 200 was returned');
-                }
+                callback( httpRequest );
             }
         };
 

@@ -64,6 +64,11 @@ class Cart {
         this.updateDishesList();
     }
 
+    clearDishesList(){
+        this.cartDishes = [];
+        this.updateDishesList();
+    }
+
     getCartTotal(){
         let totalPrice = 0;
         this.cartDishes.forEach( function (dish) {
@@ -75,10 +80,10 @@ class Cart {
 
     getCartProductCount(){
         let productCount = 0;
-        console.log( this.cartDishes );
+
         if( this.cartDishes.length > 0 ){
             this.cartDishes.forEach( function (dish) {
-                productCount += dish.count;
+                productCount += parseInt(dish.count);
             } );
         }
 
