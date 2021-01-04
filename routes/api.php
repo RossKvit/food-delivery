@@ -17,6 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/orders', function (Request $request) {
-
-});
+Route::resource('dishes', 'Rest\DishController');
